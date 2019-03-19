@@ -1,7 +1,7 @@
 const fs = require('fs');
 const sizzleCode = fs.readFileSync(require.resolve('sizzle'));
 
-const getElementBySizzle = eval("(selector) => { \n" + sizzleCode + "\n const elements = Sizzle(selector); return elements[0] }");
+const getElementBySizzle = eval("(selector) => { \n" + sizzleCode + "\n const elements = Sizzle(selector); return elements }");
 
 function css3Assert(instance) {
 
