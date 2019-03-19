@@ -1,7 +1,7 @@
 const fs = require('fs');
 const sizzleCode = fs.readFileSync(require.resolve('sizzle'));
 
-const getElementBySizzle = eval("(selector) => { \n" + sizzleCode + "\n const elements = Sizzle(selector); return elements }");
+const getElementBySizzle = eval("(selector) => { \n" + sizzleCode + "\n const elements = Sizzle(selector); console.log('Count of elements fetched', elements.length); return elements }");
 
 function css3Assert(instance) {
 
@@ -11,7 +11,7 @@ function css3Assert(instance) {
         getElementBySizzle,
         selector,
       );
-      if (element.asElement()) {
+      if (Array.isArray(element) && element.length > 0 && element[0].asElement()) {
         return true
       } else {
         throw new Error('an element with selector: "'+ selector+ '" not found');
